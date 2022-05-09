@@ -29,10 +29,12 @@ int main()
             bM.createBabies();
         };
         std::this_thread::sleep_for (std::chrono::seconds(1));
+        bM.cullHalfBunnies();
+        std::cout << std::endl;
         bM.showBunnies();
         std::this_thread::sleep_for (std::chrono::seconds(2));
 
-    }while(true);
+    }while(!bM.isBunnyListEmpty());
 
     return 0;
 }
