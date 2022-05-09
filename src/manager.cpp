@@ -20,6 +20,14 @@ void Manager::addBunny()
     bunnyList.push_back(newBunny);
 }
 
+void Manager::addBunny(colour bunnyMotherCol)
+{
+    Bunny newBunny = Bunny(bunnyMotherCol);
+    std::cout << "A " << newBunny.getRadioActive() << " "<< newBunny.getColourAsString() << " " << newBunny.getGender() << " bunny named " << newBunny.getName() << " was created" << std::endl;
+    std::this_thread::sleep_for (std::chrono::seconds(1));
+    bunnyList.push_back(newBunny);
+}
+
 
 
 void Manager::ageAllBunnies()
@@ -50,5 +58,31 @@ void Manager::showBunnies()
          bunny->getColourAsString() << " " << 
          bunny->getGender() << " bunny named " << 
          bunny->getName() << std::endl;
+    }
+}
+
+bool Manager::isBreedableMale()
+{
+    std::list<Bunny>::iterator bunny = bunnyList.begin();
+    while(bunny != bunnyList.end()) // iterator is a pointer, reset l.begin in for loop after inserting new elements
+    {
+        if((bunny->getAge() >= MIN_BREEDABLE_AGE && !bunny->isRadioActive()) && bunny->getGender() == "Male" )
+        {
+            return true;           //i.e bunny is breedable male 
+        }
+        ++bunny;
+    }
+    return false;
+}
+
+void Manager::createBabies()
+{
+    std::list<Bunny>::iterator bunny;
+    for(bunny = bunnyList.begin(); bunny != bunnyList.end(); ++bunny)
+    {
+        if((bunny->getAge() >= MIN_BREEDABLE_AGE && !bunny->isRadioActive()) && bunny->getGender() == "Female")
+        {
+            addBunny(bunny->getColourAsEnum());
+        }
     }
 }

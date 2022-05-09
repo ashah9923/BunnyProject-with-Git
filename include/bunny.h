@@ -16,6 +16,7 @@ class Bunny
 
     public:
     Bunny();
+    Bunny(colour);
     const std::string randNames[10] = {"Vince","Hershey","Hunter","Egor","Freckles",
                                        "Danni","Apollo","Napoleon","Ginny","Gucci"};
     

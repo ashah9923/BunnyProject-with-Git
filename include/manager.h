@@ -20,6 +20,8 @@ class Manager
         void addBunny();
         void showBunnies();
         void ageAllBunnies();
-        
+        bool isBreedableMale();
+        void createBabies();
+        void addBunny(colour);
 };
 #endif

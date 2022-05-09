@@ -22,7 +22,10 @@ int main()
         fputs("\x1b[H\x1b[2J\x1b[3J", stdout);
         fflush(stdout);
         bM.ageAllBunnies();
-        
+        if(bM.isBreedableMale())
+        {
+            bM.createBabies();
+        };
         bM.showBunnies();
         std::this_thread::sleep_for (std::chrono::seconds(2));
 
