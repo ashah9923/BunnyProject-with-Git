@@ -13,6 +13,20 @@ int main()
     srand(time(NULL));
 
     Manager bM;
+    std::this_thread::sleep_for (std::chrono::seconds(2));
+    char userInput;
+    std::cout << "Press q to exit" << std::endl;
+
+    do
+    {
+        fputs("\x1b[H\x1b[2J\x1b[3J", stdout);
+        fflush(stdout);
+        bM.ageAllBunnies();
+        
+        bM.showBunnies();
+        std::this_thread::sleep_for (std::chrono::seconds(2));
+
+    }while(true);
 
     return 0;
 }

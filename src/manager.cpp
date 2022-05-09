@@ -20,3 +20,35 @@ void Manager::addBunny()
     bunnyList.push_back(newBunny);
 }
 
+
+
+void Manager::ageAllBunnies()
+{
+    std::list<Bunny>::iterator bunny = bunnyList.begin();
+    while(bunny != bunnyList.end()) 
+    {
+        bunny->incrementAge();
+        if((bunny->getAge() > MAX_NORMAL_BUNNY_AGE && !bunny->isRadioActive()) || bunny->getAge() > MAX_RADIOACTIVE_BUNNY_AGE)
+        {
+            std::cout << "A " << bunny->getRadioActive() << " "<< bunny->getColourAsString() << " " << bunny->getGender() << " bunny named " << bunny->getName() << " has died " << std::endl;
+            bunnyList.erase(bunny++);           //erases bunny then moves to next bunny 
+        }
+        else{
+            ++bunny;
+        }
+    }
+
+}
+
+void Manager::showBunnies()
+{
+    std::list<Bunny>::iterator bunny;
+    for(bunny = bunnyList.begin(); bunny != bunnyList.end(); ++bunny) // iterator is a pointer, reset l.begin in for loop after inserting new elements
+    {
+         std::cout << "A " << bunny->getRadioActive() << " " << 
+         bunny->getAge() << " yr old " << 
+         bunny->getColourAsString() << " " << 
+         bunny->getGender() << " bunny named " << 
+         bunny->getName() << std::endl;
+    }
+}

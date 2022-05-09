@@ -18,5 +18,8 @@ class Manager
     public:
         Manager();
         void addBunny();
+        void showBunnies();
+        void ageAllBunnies();
+        
 };
 #endif
