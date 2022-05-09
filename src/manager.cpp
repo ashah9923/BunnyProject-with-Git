@@ -7,6 +7,7 @@
 
 Manager::Manager()
 {
+    srand(time(NULL));
     addBunny();
     addBunny();
     addBunny();
@@ -159,7 +160,6 @@ void Manager::runProgramme()
     //below fixes clear screen for debugger
     fputs("\x1b[H\x1b[2J\x1b[3J", stdout);
     fflush(stdout);
-    srand(time(NULL));
     do
     {
         fputs("\x1b[H\x1b[2J\x1b[3J", stdout);
