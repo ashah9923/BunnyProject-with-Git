@@ -23,5 +23,7 @@ class Manager
         bool isBreedableMale();
         void createBabies();
         void addBunny(colour);
+        int numOfRadioActive();
+        void turnBunnyRadioActive(int);
 };
 #endif

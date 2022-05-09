@@ -86,3 +86,35 @@ void Manager::createBabies()
         }
     }
 }
+
+int Manager::numOfRadioActive()
+{
+    int numOfRadioAcive = 0;
+    std::list<Bunny>::iterator bunny;
+    for(bunny = bunnyList.begin(); bunny != bunnyList.end(); ++bunny)
+    {
+        if((bunny->isRadioActive()))
+        {
+            numOfRadioAcive++;
+        }
+    }
+    return numOfRadioAcive;
+}
+
+void Manager::turnBunnyRadioActive(int radioActiveNum)
+{
+    int turnedBunnies = 0;
+    std::list<Bunny>::iterator bunny;
+    for(bunny = bunnyList.begin(); bunny != bunnyList.end(); ++bunny)
+    {
+        if(turnedBunnies == radioActiveNum)
+        {
+            return;
+        }
+        else if((!bunny->isRadioActive()))
+        {
+            bunny->setRadioActive(true);
+            turnedBunnies++;
+        }
+    }
+}

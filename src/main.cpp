@@ -22,10 +22,13 @@ int main()
         fputs("\x1b[H\x1b[2J\x1b[3J", stdout);
         fflush(stdout);
         bM.ageAllBunnies();
+        bM.turnBunnyRadioActive(bM.numOfRadioActive());
+        std::this_thread::sleep_for (std::chrono::seconds(1));
         if(bM.isBreedableMale())
         {
             bM.createBabies();
         };
+        std::this_thread::sleep_for (std::chrono::seconds(1));
         bM.showBunnies();
         std::this_thread::sleep_for (std::chrono::seconds(2));
 
