@@ -2,6 +2,7 @@
 #define BUNNY_H
 
 #include <iostream>
+#include <vector>
 
 enum colour{white, brown, black, spotted};
 
@@ -11,20 +12,20 @@ class Bunny
     bool isMale;
     int age;
     std::string name;
-    bool RadioActive;
+    bool infected;
     colour bunnyColour; //instance of enum
-
+    const std::string randNames[20] = {"Vince","Hershey","Hunter","Egor","Freckles",
+                                        "Danni","Apollo","Napoleon","Ginny","Gucci",
+                                        "Fudge", "Cupcake", "Butternut", "Amore", "Nellie", 
+                                        "Precious", "Vanilla", "Noisette", "Paisley", "Brie"};
     public:
     Bunny();
-    Bunny(colour);
-    const std::string randNames[10] = {"Vince","Hershey","Hunter","Egor","Freckles",
-                                       "Danni","Apollo","Napoleon","Ginny","Gucci"};
-    
+    explicit Bunny(colour);
     void incrementAge();
-    void setRadioActive(bool);
+    void setInfected(bool);
     int getAge();
-    bool isRadioActive();
-    std::string getRadioActive();
+    bool isInfected();
+    std::string getInfected();
     std::string getName();
     std::string getGender();
     std::string getColourAsString();

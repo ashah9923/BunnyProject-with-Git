@@ -16,7 +16,7 @@ Bunny::Bunny()
 
     // -- SET NAME -- //
     
-    name = randNames[rand()%10];
+    name = randNames[rand() % 20];
 
     // -- SET COLOUR -- //
 
@@ -44,11 +44,11 @@ Bunny::Bunny()
 
     if(randNum2 < 2)
     {
-        RadioActive = true;
+        infected = true;
     }
     else
     {
-        RadioActive = false;
+        infected = false;
     }
 }
 
@@ -78,27 +78,27 @@ Bunny::Bunny(colour motherCol)
 
     if(randNum2 < 2)
     {
-        RadioActive = true;
+        infected = true;
     }
     else
     {
-        RadioActive = false;
+        infected = false;
     }
 }
 
-void Bunny::setRadioActive(bool radio)
+void Bunny::setInfected(bool radio)
 {
-    RadioActive = radio;
+    infected = radio;
 }
 
-bool Bunny::isRadioActive()
+bool Bunny::isInfected()
 {
-    return RadioActive;
+    return infected;
 }
 
-std::string Bunny::getRadioActive()
+std::string Bunny::getInfected()
 {
-    return (RadioActive) ? ("Radioactive") : ("Normal");
+    return (infected) ? ("Infected") : ("Normal");
 }
 
 

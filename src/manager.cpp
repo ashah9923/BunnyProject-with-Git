@@ -20,14 +20,14 @@ Manager::Manager()
 void Manager::addBunny()
 {
     std::shared_ptr<Bunny> newBunny(new Bunny());
-    std::cout << "A " << newBunny->getRadioActive() << " "<< newBunny->getColourAsString() << " " << newBunny->getGender() << " bunny named " << newBunny->getName() << " was created" << std::endl;
+    std::cout << "A " << newBunny->getInfected() << " "<< newBunny->getColourAsString() << " " << newBunny->getGender() << " bunny named " << newBunny->getName() << " was created" << std::endl;
     bunnyList.push_back(newBunny);
 }
 
 void Manager::addBunny(colour bunnyMotherCol)
 {
     std::shared_ptr<Bunny> newBunny(new Bunny(bunnyMotherCol));
-    std::cout << "A " << newBunny->getRadioActive() << " "<< newBunny->getColourAsString() << " " << newBunny->getGender() << " bunny named " << newBunny->getName() << " was created" << std::endl;
+    std::cout << "A " << newBunny->getInfected() << " "<< newBunny->getColourAsString() << " " << newBunny->getGender() << " bunny named " << newBunny->getName() << " was created" << std::endl;
     std::this_thread::sleep_for (std::chrono::seconds(1));
     bunnyList.push_back(newBunny);
 }
@@ -40,9 +40,9 @@ void Manager::ageAllBunnies()
     while(bunny != bunnyList.end()) 
     {
         (*bunny)->incrementAge();
-        if(((*bunny)->getAge() > MAX_NORMAL_BUNNY_AGE && !(*bunny)->isRadioActive()) || (*bunny)->getAge() > MAX_RADIOACTIVE_BUNNY_AGE)
+        if(((*bunny)->getAge() > MAX_NORMAL_BUNNY_AGE && !(*bunny)->isInfected()) || (*bunny)->getAge() > MAX_RADIOACTIVE_BUNNY_AGE)
         {
-            std::cout << "A " << (*bunny)->getRadioActive() << " "<< (*bunny)->getColourAsString() << " " << (*bunny)->getGender() << " bunny named " << (*bunny)->getName() << " has died " << std::endl;
+            std::cout << "A " << (*bunny)->getInfected() << " "<< (*bunny)->getColourAsString() << " " << (*bunny)->getGender() << " bunny named " << (*bunny)->getName() << " has died " << std::endl;
             bunnyList.erase(bunny++);           //erases bunny then moves to next bunny 
         }
         else{
@@ -57,7 +57,7 @@ void Manager::showBunnies()
     std::list<std::shared_ptr<Bunny>>::iterator bunny;
     for(bunny = bunnyList.begin(); bunny != bunnyList.end(); ++bunny) // iterator is a pointer, reset l.begin in for loop after inserting new elements
     {
-         std::cout << "A " << (*bunny)->getRadioActive() << " " << 
+         std::cout << "A " << (*bunny)->getInfected() << " " << 
          (*bunny)->getAge() << " yr old " << 
          (*bunny)->getColourAsString() << " " << 
          (*bunny)->getGender() << " bunny named " << 
@@ -70,7 +70,7 @@ bool Manager::isBreedableMale()
     std::list<std::shared_ptr<Bunny>>::iterator bunny = bunnyList.begin();
     while(bunny != bunnyList.end()) // iterator is a pointer, reset l.begin in for loop after inserting new elements
     {
-        if(((*bunny)->getAge() >= MIN_BREEDABLE_AGE && !(*bunny)->isRadioActive()) && (*bunny)->getGender() == "Male" )
+        if(((*bunny)->getAge() >= MIN_BREEDABLE_AGE && !(*bunny)->isInfected()) && (*bunny)->getGender() == "Male" )
         {
             return true;           //i.e bunny is breedable male 
         }
@@ -84,20 +84,20 @@ void Manager::createBabies()
     std::list<std::shared_ptr<Bunny>>::iterator bunny;
     for(bunny = bunnyList.begin(); bunny != bunnyList.end(); ++bunny)
     {
-        if(((*bunny)->getAge() >= MIN_BREEDABLE_AGE && !(*bunny)->isRadioActive()) && (*bunny)->getGender() == "Female")
+        if(((*bunny)->getAge() >= MIN_BREEDABLE_AGE && !(*bunny)->isInfected()) && (*bunny)->getGender() == "Female")
         {
             addBunny((*bunny)->getColourAsEnum());
         }
     }
 }
 
-int Manager::numOfRadioActive()
+int Manager::numOfInfected()
 {
     int numOfRadioAcive = 0;
     std::list<std::shared_ptr<Bunny>>::iterator bunny;
     for(bunny = bunnyList.begin(); bunny != bunnyList.end(); ++bunny)
     {
-        if(((*bunny)->isRadioActive()))
+        if(((*bunny)->isInfected()))
         {
             numOfRadioAcive++;
         }
@@ -105,7 +105,7 @@ int Manager::numOfRadioActive()
     return numOfRadioAcive;
 }
 
-void Manager::turnBunnyRadioActive(int radioActiveNum)
+void Manager::turnBunnyInfected(int radioActiveNum)
 {
     int turnedBunnies = 0;
     std::list<std::shared_ptr<Bunny>>::iterator bunny;
@@ -115,9 +115,9 @@ void Manager::turnBunnyRadioActive(int radioActiveNum)
         {
             return;
         }
-        else if((!(*bunny)->isRadioActive()))
+        else if((!(*bunny)->isInfected()))
         {
-            (*bunny)->setRadioActive(true);
+            (*bunny)->setInfected(true);
             turnedBunnies++;
         }
     }
@@ -166,7 +166,7 @@ void Manager::runProgramme()
         fflush(stdout);
         
         ageAllBunnies();
-        turnBunnyRadioActive(numOfRadioActive());
+        turnBunnyInfected(numOfInfected());
         std::this_thread::sleep_for (std::chrono::seconds(1));
         if(isBreedableMale())
         {

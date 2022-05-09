@@ -23,8 +23,8 @@ class Manager
         bool isBreedableMale();
         void createBabies();
         void addBunny(colour);
-        int numOfRadioActive();
-        void turnBunnyRadioActive(int);
+        int numOfInfected();
+        void turnBunnyInfected(int);
         void cullHalfBunnies();
         bool isBunnyListEmpty();
         int getBunnyListSize();
