@@ -28,5 +28,6 @@ class Manager
         void cullHalfBunnies();
         bool isBunnyListEmpty();
         int getBunnyListSize();
+        void runProgramme();
 };
 #endif

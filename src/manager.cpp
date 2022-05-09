@@ -2,6 +2,7 @@
 #include <memory>
 #include <thread>         // std::this_thread::sleep_for
 #include <chrono>         // std::chrono::seconds
+#include <conio.h>
 #include "../include/manager.h"
 
 Manager::Manager()
@@ -11,6 +12,8 @@ Manager::Manager()
     addBunny();
     addBunny();
     addBunny();
+    std::this_thread::sleep_for (std::chrono::seconds(2));
+    runProgramme();
 }
 
 void Manager::addBunny()
@@ -148,4 +151,53 @@ bool Manager::isBunnyListEmpty()
 int Manager::getBunnyListSize()
 {
     return bunnyList.size();
+}
+
+void Manager::runProgramme()
+{
+    system("cls"); 
+    //below fixes clear screen for debugger
+    fputs("\x1b[H\x1b[2J\x1b[3J", stdout);
+    fflush(stdout);
+    srand(time(NULL));
+    do
+    {
+        fputs("\x1b[H\x1b[2J\x1b[3J", stdout);
+        fflush(stdout);
+        
+        ageAllBunnies();
+        turnBunnyRadioActive(numOfRadioActive());
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+        if(isBreedableMale())
+        {
+            createBabies();
+        };
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+        if(getBunnyListSize() > 1000)
+        {
+            cullHalfBunnies();
+        }
+        std::cout << std::endl;
+        showBunnies();
+        
+        std::cout << "Press k to kill half bunnies" << std::endl;
+        float timer = 0;
+        while(timer < 2)
+        {
+            if(_kbhit())
+            {
+                char userInput = getch();
+                if(userInput == 'k' || userInput == 'K')
+                {
+                    cullHalfBunnies();
+                }
+                timer = 2;
+            }
+            else 
+            {
+                std::this_thread::sleep_for (std::chrono::milliseconds(100));
+                timer += 0.1;
+            }
+        }
+    }while(!isBunnyListEmpty());
 }
