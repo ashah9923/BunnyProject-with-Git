@@ -27,5 +27,6 @@ class Manager
         void turnBunnyRadioActive(int);
         void cullHalfBunnies();
         bool isBunnyListEmpty();
+        int getBunnyListSize();
 };
 #endif

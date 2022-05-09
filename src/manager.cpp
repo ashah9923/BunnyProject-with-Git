@@ -122,8 +122,7 @@ void Manager::turnBunnyRadioActive(int radioActiveNum)
 void Manager::cullHalfBunnies()
 {
     std::list<Bunny>::iterator bunny;
-    if(bunnyList.size() > 10)
-    {
+    
         for (int i = 0; i < bunnyList.size()/2; i++) 
         {
             int randomBunny = rand() % bunnyList.size();
@@ -133,7 +132,6 @@ void Manager::cullHalfBunnies()
             bunny = bunnyList.begin();
             //it = nullptr;
 	    }
-    }
     return;
 }
 
@@ -145,4 +143,9 @@ bool Manager::isBunnyListEmpty()
         return true;
     }
     return false;
+}
+
+int Manager::getBunnyListSize()
+{
+    return bunnyList.size();
 }
