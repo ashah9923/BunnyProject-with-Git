@@ -14,7 +14,7 @@ const int MIN_BREEDABLE_AGE = 2;
 class Manager
 {
     private:
-    std::list<Bunny> bunnyList; 
+    std::list<std::shared_ptr<Bunny>> bunnyList; 
     public:
         Manager();
         void addBunny();
