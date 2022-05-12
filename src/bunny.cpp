@@ -101,8 +101,6 @@ std::string Bunny::getInfected()
     return (infected) ? ("Infected") : ("Normal");
 }
 
-
-
 int Bunny::getAge()
 {
     return age;
