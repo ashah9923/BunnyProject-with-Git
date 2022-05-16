@@ -22,15 +22,15 @@ Bunny::Bunny()
 
     randNum = rand() % 40;
 
-    if(randNum <= 10)
+    if(randNum < 10)
     {
         bunnyColour = colour::white;
     }
-    else if(randNum > 10 && randNum <= 20)
+    else if(randNum < 20)
     {
         bunnyColour = colour::brown;
     }
-    else if(randNum > 20 && randNum <= 30)
+    else if(randNum < 30)
     {
         bunnyColour = colour::black;
     }
