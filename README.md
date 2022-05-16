@@ -1,6 +1,6 @@
 # Bunny Project
 This projects task was to create a list of bunny objects with the following attributes:
-gender, colour, age, name, infected, and run a simulation.
+gender, colour, age, name, infected, and run a simulation. This Project was made using CMake.
 
 ## Aim of the Project
 Goals that were set out to achieve:
