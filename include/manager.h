@@ -7,7 +7,7 @@
 #include "bunny.h"
 
 const int MAX_NORMAL_BUNNY_AGE = 10;
-const int MAX_RADIOACTIVE_BUNNY_AGE = 50;
+const int MAX_INFECTED_BUNNY_AGE = 50;
 const int MIN_BREEDABLE_AGE = 2;
 
 

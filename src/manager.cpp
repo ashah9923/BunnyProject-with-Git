@@ -40,7 +40,7 @@ void Manager::ageAllBunnies()
     while(bunny != bunnyList.end()) 
     {
         (*bunny)->incrementAge();
-        if(((*bunny)->getAge() > MAX_NORMAL_BUNNY_AGE && !(*bunny)->isInfected()) || (*bunny)->getAge() > MAX_RADIOACTIVE_BUNNY_AGE)
+        if(((*bunny)->getAge() > MAX_NORMAL_BUNNY_AGE && !(*bunny)->isInfected()) || (*bunny)->getAge() > MAX_INFECTED_BUNNY_AGE)
         {
             std::cout << "A " << (*bunny)->getInfected() << " "<< (*bunny)->getColourAsString() << " " << (*bunny)->getGender() << " bunny named " << (*bunny)->getName() << " has died " << std::endl;
             bunnyList.erase(bunny++);           //erases bunny then moves to next bunny 
