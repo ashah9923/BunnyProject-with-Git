@@ -37,7 +37,7 @@ void Manager::addBunny(colour bunnyMotherCol)
 void Manager::ageAllBunnies()
 {
     std::list<std::shared_ptr<Bunny>>::iterator bunny = bunnyList.begin();
-    while(bunny != bunnyList.end()) 
+    while(bunny != bunnyList.end())         //range based for loop instead of while
     {
         (*bunny)->incrementAge();
         if(((*bunny)->getAge() > MAX_NORMAL_BUNNY_AGE && !(*bunny)->isInfected()) || (*bunny)->getAge() > MAX_INFECTED_BUNNY_AGE)
